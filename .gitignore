@@ -22,3 +22,4 @@ debug
 # Project specific files
 ClanInspector*.json
 ClanInspector*.tsv
+Dev Notes.txt

@@ -177,13 +177,72 @@ type activityDetails struct {
 }
 
 type statValue struct {
-	StatID string     `json:"statId" bson:"StatID"`
-	Basic  basicValue `json:"basic" bson:"Basic"`
+	StatID     string     `json:"statId" bson:"StatID"`
+	Basic      basicValue `json:"basic" bson:"Basic"`
+	Pga        basicValue `json:"pga,omitempty" bson:"Pga,omitempty"`
+	Weighted   basicValue `json:"weighted,omitempty" bson:"Weighted,omitempty"`
+	ActivityID string     `json:"activityId,omitempty" bson:"ActivityID,omitempty"`
 }
 
 type basicValue struct {
 	Value        float64 `json:"value" bson:"Value"`
 	DisplayValue string  `json:"displayValue" bson:"DisplayValue"`
+}
+
+type hashedActivityDetails struct {
+	Response        HashedActivityDetails `json:"Response"`
+	ErrorCode       int                   `json:"ErrorCode"`
+	ThrottleSeconds int                   `json:"ThrottleSeconds"`
+	ErrorStatus     string                `json:"ErrorStatus"`
+	Message         string                `json:"Message"`
+	MessageData     struct {
+	} `json:"MessageData"`
+}
+
+type HashedActivityDetails struct {
+	DisplayProperties struct {
+		Description string `json:"description" bson:"Description,omitempty"`
+		Name        string `json:"name" bson:"Name,omitempty"`
+		Icon        string `json:"icon" bson:"Icon,omitempty"`
+		HasIcon     bool   `json:"hasIcon" bson:"HasIcon,omitempty"`
+	} `json:"displayProperties" bson:"DisplayProperties,omitempty"`
+	ReleaseIcon           string        `json:"releaseIcon" bson:"ReleaseIcon,omitempty"`
+	ReleaseTime           int           `json:"releaseTime" bson:"ReleaseTime,omitempty"`
+	ActivityLevel         int           `json:"activityLevel" bson:"ActivityLevel,omitempty"`
+	CompletionUnlockHash  int           `json:"completionUnlockHash" bson:"CompletionUnlockHash,omitempty"`
+	ActivityLightLevel    int           `json:"activityLightLevel" bson:"ActivityLightLevel,omitempty"`
+	DestinationHash       int64         `json:"destinationHash" bson:"DestinationHash,omitempty"`
+	PlaceHash             int64         `json:"placeHash" bson:"PlaceHash,omitempty"`
+	ActivityTypeHash      int           `json:"activityTypeHash" bson:"ActivityTypeHash,omitempty"`
+	Tier                  int           `json:"tier" bson:"Tier,omitempty"`
+	PgcrImage             string        `json:"pgcrImage" bson:"PGCRImage,omitempty"`
+	Rewards               []interface{} `json:"rewards" bson:"Rewards,omitempty"`
+	Modifiers             []interface{} `json:"modifiers" bson:"Modifiers,omitempty"`
+	IsPlaylist            bool          `json:"isPlaylist" bson:"IsPlaylist,omitempty"`
+	Challenges            []interface{} `json:"challenges" bson:"Challenges,omitempty"`
+	OptionalUnlockStrings []interface{} `json:"optionalUnlockStrings" bson:"OptionalUnlockStrings,omitempty"`
+	InheritFromFreeRoam   bool          `json:"inheritFromFreeRoam" bson:"InheritFromFreeRoam,omitempty"`
+	SuppressOtherRewards  bool          `json:"suppressOtherRewards" bson:"SuppressOtherRewards,omitempty"`
+	PlaylistItems         []interface{} `json:"playlistItems" bson:"PlaylistItems,omitempty"`
+	ActivityGraphList     []struct {
+		ActivityGraphHash int64 `json:"activityGraphHash" bson:"ActivityGraphHash,omitempty"`
+	} `json:"activityGraphList" bson:"ActivityGraphList,omitempty"`
+	Matchmaking struct {
+		IsMatchmade          bool `json:"isMatchmade" bson:"IsMatchmade,omitempty"`
+		MinParty             int  `json:"minParty" bson:"MinParty,omitempty"`
+		MaxParty             int  `json:"maxParty" bson:"MaxParty,omitempty"`
+		MaxPlayers           int  `json:"maxPlayers" bson:"MaxPlayers,omitempty"`
+		RequiresGuardianOath bool `json:"requiresGuardianOath" bson:"RequiresGuardianOath,omitempty"`
+	} `json:"matchmaking" bson:"Matchmaking,omitempty"`
+	DirectActivityModeHash int   `json:"directActivityModeHash" bson:"DirectActivityModeHash,omitempty"`
+	DirectActivityModeType int   `json:"directActivityModeType" bson:"DirectActivityModeType,omitempty"`
+	ActivityModeHashes     []int `json:"activityModeHashes" bson:"ActivityModeHashes,omitempty"`
+	ActivityModeTypes      []int `json:"activityModeTypes" bson:"ActivityModeTypes,omitempty"`
+	IsPvP                  bool  `json:"isPvP" bson:"IsPvP,omitempty"`
+	Hash                   int64 `json:"hash" bson:"Hash,omitempty"`
+	Index                  int   `json:"index" bson:"Index,omitempty"`
+	Redacted               bool  `json:"redacted" bson:"Redacted,omitempty"`
+	Blacklisted            bool  `json:"blacklisted" bson:"Blacklisted,omitempty"`
 }
 
 func GetActivities(memberID string, characterID string, lastInstanceID string) []PGCR {

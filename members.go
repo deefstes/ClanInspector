@@ -47,6 +47,7 @@ type Player struct {
 	MembershipType int    `json:"membershipType" bson:"MembershipType"`
 	MembershipID   string `json:"membershipId" bson:"MembershipID"`
 	DisplayName    string `json:"displayName" bson:"DisplayName"`
+	Enabled        bool   `json:"enabled" bson:"Enabled"`
 }
 
 func GetMembers() []Player {

@@ -77,6 +77,7 @@ type Character struct {
 	LastRetrievedActivity string    `json:"LastRetrievedActivity" bson:"LastRetrievedActivity"`
 	LastRetrievedDate     time.Time `json:"LastRetrievedDate" bson:"LastRetrievedDate"`
 	DateLastPlayed        time.Time `json:"DateLastPlayed" bson:"DateLastPlayed"`
+	Enabled               bool      `json:"Enabled" bson:"Enabled"`
 }
 
 func GetCharacters(memberID string) []Character {

@@ -18,3 +18,7 @@ bin/
 
 # Debug information
 debug
+
+# Project specific files
+ClanInspector*.json
+ClanInspector*.tsv
